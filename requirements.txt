@@ -1,0 +1,6 @@
+markitdown
+fastapi
+uvicorn
+pydantic
+requests
+-e .
