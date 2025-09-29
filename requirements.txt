@@ -1,6 +1,44 @@
-markitdown
-fastapi
-uvicorn
-pydantic
-requests
--e .
+# MCP Protocol
+fastmcp
+
+# File Conversion
+markitdown>=0.0.1a2
+
+# Core Dependencies
+pydantic>=2.0.0
+
+# Image Processing
+pillow>=10.0.0
+pytesseract>=0.3.10  # Optional: for OCR support
+
+# Office Documents
+python-pptx>=0.6.21
+python-docx>=1.1.0
+openpyxl>=3.1.0
+
+# Data Processing
+pandas>=2.0.0
+
+# Web Content
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# PDF Processing
+pdfplumber>=0.10.0
+pypdf>=3.0.0
+
+# Audio Processing (Optional)
+# openai-whisper>=20231117  # Uncomment for audio transcription
+# ffmpeg-python>=0.2.0      # Uncomment for audio support
+
+# Additional Format Support
+chardet>=5.0.0  # Character encoding detection
+python-magic>=0.4.27  # File type detection (requires libmagic)
+mammoth>=1.6.0  # Better DOCX to markdown conversion
+PyYAML>=6.0  # YAML file support
+
+# Media Processing
+# moviepy>=1.0.3  # Video file support (optional)
+
+# Archive Support
+py7zr>=0.20.0  # 7z archive support
