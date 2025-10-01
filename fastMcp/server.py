@@ -1,22 +1,18 @@
+# mcp_server.py
+from fastmcp import FastMCP
+from markitdown import MarkItDown
 
-from md_converter import mcp as md_converter_tool
-import contextlib
-from fastapi import FastAPI
+mcp = FastMCP("File Converter MCP Server", host="127.0.0.1", port=8001)
 
-
-# Create a combined lifespan to manage both session managers
-@contextlib.asynccontextmanager
-async def lifespan(app: FastAPI):
-    async with contextlib.AsyncExitStack() as stack:
-        await stack.enter_async_context(md_converter_tool.session_manager.run())
-        # await stack.enter_async_context(math_mcp.session_manager.run())
-        yield
-
-app = FastAPI(lifespan=lifespan)
-app.mount("/convert", md_converter_tool.streamable_http_app())
-# app.mount("/math", math_mcp.streamable_http_app())
-
+@mcp.tool
+def convert(file_path: str) -> str:
+    """Converts a file to markdown format."""
+    md = MarkItDown(enable_plugins=False)
+    result = md.convert(file_path)
+    output_file = f"{file_path.split('.')[0]}.md"
+    with open(output_file, "w") as f:
+        f.write(result.text_content)
+    return f"Markdown output saved to {output_file}"
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    mcp.run(transport="streamable-http")
