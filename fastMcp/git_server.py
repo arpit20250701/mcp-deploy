@@ -43,4 +43,4 @@ def convert_folder(folder_path: str) -> str:
     return summary
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(streamable_http=True)
